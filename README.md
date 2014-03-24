@@ -7,6 +7,8 @@ Simple Daemonize Helper Code
 Exmaple
 
 ```
+package main
+
 import "github.com/miolini/godaemon"
 import "time"
 import "log"
