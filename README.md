@@ -9,10 +9,14 @@ Exmaple
 ```
 import "github.com/miolini/godaemon"
 import "time"
+import "log"
 
 func main() {
     pidFile := "/var/run/mydaemon.pid"
-    godaemon.WritePidFile(pidFile)
+    err := godaemon.WritePidFile(pidFile)
+    if err != nil {
+        log.Fatalf("pid error: %s", err)
+    }
     time.Sleep(5)
     godaemon.RemovePidFile(pidFile)
 }
