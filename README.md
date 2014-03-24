@@ -8,6 +8,7 @@ Exmaple
 
 ```
 import "github.com/miolini/godaemon"
+import "time"
 
 func main() {
     pidFile := "/var/run/mydaemon.pid"
