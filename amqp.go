@@ -27,7 +27,7 @@ func WorkerAmqpConsumer(worker *Worker, uri string, queue string, msgChan chan s
     return
 }
 
-func WorkerAmqpPublisher(worker *Worker, uri string, exchange string, msgChan chan string) (err error) {
+func WorkerAmqpPublisher(worker *Worker, uri string, exchange string, msgChan chan string, statChan chan int) (err error) {
     queueConn, err := amqp.Dial(uri)
     if err != nil {
         return
@@ -41,6 +41,7 @@ func WorkerAmqpPublisher(worker *Worker, uri string, exchange string, msgChan ch
     for msg := range msgChan {
         publishing := amqp.Publishing{ContentType:"text/plain",Body:[]byte(msg)}
         queueChan.Publish(exchange, "", false, false, publishing)
+        statChan <- 1
     }
     return
 }
