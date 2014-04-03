@@ -27,7 +27,7 @@ func WorkerAmqpConsumer(worker *Worker, uri string, queue string, msgChan chan s
     return
 }
 
-func WorkerAmqpProducer(worker *Worker, uri string, exchange string, msgChan chan string) (err error) {
+func WorkerAmqpPublisher(worker *Worker, uri string, exchange string, msgChan chan string) (err error) {
     queueConn, err := amqp.Dial(uri)
     if err != nil {
         return
